@@ -19,7 +19,7 @@ import {
   CardTitle, 
   CardDescription 
 } from "@/components/ui/card";
-import { getAgenda, saveAvailability } from "./actions";
+import { getAgenda, saveAvailability, deleteAvailability } from "./actions";
 import { useToast } from "@/hooks/use-toast";
 
 const DAYS = [
@@ -39,6 +39,7 @@ const COLORS = ['#d4af37', '#6495ed', '#48d182', '#e87e7e', '#c084fc', '#fb923c'
 
 export default function AgendaPage() {
   const [userName, setUserName] = useState("");
+  const [pin, setPin] = useState("");
   const [mySlots, setMySlots] = useState<Set<string>>(new Set());
   const [allData, setAllData] = useState<any>({ participants: {} });
   const [isSaving, setIsSaving] = useState(false);
@@ -142,21 +143,45 @@ export default function AgendaPage() {
 
   const handleSave = async () => {
     if (!userName.trim()) return;
+    if (pin.length !== 4) {
+      toast({ variant: "destructive", title: "PIN REQUERIDO", description: "Pon un PIN de 4 cifras (lo usarás para editar o borrar tus horas)." });
+      return;
+    }
     setIsSaving(true);
     try {
-      await saveAvailability(userName, Array.from(mySlots));
-      setHasChanges(false);
-      await loadData(true);
-      toast({
-        title: "GUARDADO EXITOSO",
-        description: "Tu disponibilidad ha sido actualizada.",
-      });
+      const res: any = await saveAvailability(userName, pin, Array.from(mySlots));
+      if (res?.error) {
+        toast({ variant: "destructive", title: "NO SE GUARDÓ", description: res.error });
+      } else {
+        setHasChanges(false);
+        await loadData(true);
+        toast({ title: "GUARDADO EXITOSO", description: "Tu disponibilidad ha sido actualizada." });
+      }
     } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "ERROR AL GUARDAR",
-        description: "No se pudo actualizar tu disponibilidad.",
-      });
+      toast({ variant: "destructive", title: "ERROR AL GUARDAR", description: "No se pudo actualizar tu disponibilidad." });
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!userName.trim()) return;
+    if (pin.length !== 4) {
+      toast({ variant: "destructive", title: "PIN REQUERIDO", description: "Escribe tu PIN de 4 cifras para borrar." });
+      return;
+    }
+    if (typeof window !== "undefined" && !window.confirm("¿Borrar tu horario guardado de " + userName.trim() + "?")) return;
+    setIsSaving(true);
+    try {
+      const res: any = await deleteAvailability(userName, pin);
+      if (res?.error) {
+        toast({ variant: "destructive", title: "NO SE PUDO BORRAR", description: res.error });
+      } else {
+        setMySlots(new Set());
+        setHasChanges(false);
+        await loadData(true);
+        toast({ title: "HORARIO BORRADO", description: "Tu disponibilidad se ha eliminado." });
+      }
     } finally {
       setIsSaving(false);
     }
@@ -263,19 +288,35 @@ export default function AgendaPage() {
                 />
               </div>
 
+              <div className="space-y-2">
+                <label className="text-[9px] font-black text-zinc-600 uppercase tracking-widest">PIN (4 cifras)</label>
+                <Input
+                  type="password"
+                  inputMode="numeric"
+                  maxLength={4}
+                  placeholder="••••"
+                  value={pin}
+                  onChange={(e) => setPin(e.target.value.replace(/[^0-9]/g, '').slice(0, 4))}
+                  className="bg-zinc-900/40 border-zinc-800 h-12 text-sm tracking-[0.5em] placeholder:text-zinc-700 focus-visible:ring-1 focus-visible:ring-zinc-600 transition-all rounded-md"
+                />
+                <p className="text-[9px] text-zinc-600 leading-relaxed">Sin cuenta: tu PIN protege tus horas. Lo necesitas para editar o borrar luego.</p>
+              </div>
+
               <div className="flex gap-3">
                 <Button 
                   onClick={handleSave} 
-                  disabled={isSaving || !userName.trim() || !hasChanges}
+                  disabled={isSaving || !userName.trim() || pin.length !== 4 || !hasChanges}
                   className="flex-1 bg-zinc-100 hover:bg-white text-black font-black h-12 rounded-full transition-all duration-300 active:scale-[0.98] disabled:bg-zinc-900 disabled:text-zinc-700 shadow-xl shadow-white/5"
                 >
                   {isSaving ? <Loader2 className="animate-spin mr-2 h-4 w-4" /> : <Save className="mr-2 h-4 w-4" />}
                   GUARDAR
                 </Button>
                 <Button 
-                  onClick={clearMySlots} 
+                  onClick={handleDelete} 
+                  disabled={isSaving || !userName.trim() || pin.length !== 4}
                   variant="outline"
-                  className="w-12 h-12 rounded-full bg-transparent border-zinc-800 text-zinc-500 hover:text-white hover:bg-zinc-900"
+                  title="Borrar mi horario guardado (pide tu PIN)"
+                  className="w-12 h-12 rounded-full bg-transparent border-zinc-800 text-zinc-500 hover:text-red-400 hover:border-red-500/40 hover:bg-zinc-900 disabled:opacity-40"
                 >
                   <Trash2 className="w-4 h-4" />
                 </Button>
