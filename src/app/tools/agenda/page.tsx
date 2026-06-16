@@ -54,6 +54,7 @@ export default function AgendaPage() {
 
   const { toast } = useToast();
   const inputRef = useRef<HTMLInputElement>(null);
+  const touchActiveRef = useRef(false);
 
   const loadData = useCallback(async (isRefresh = false) => {
     if (!isRefresh) setIsLoading(true);
@@ -83,7 +84,7 @@ export default function AgendaPage() {
   }, [allData, userName, hasChanges]);
 
   useEffect(() => {
-    const handleMouseUp = () => { setIsDragging(false); setDragMode(null); };
+    const handleMouseUp = () => { setIsDragging(false); setDragMode(null); setTimeout(() => { touchActiveRef.current = false; }, 500); };
     document.addEventListener('mouseup', handleMouseUp);
     document.addEventListener('touchend', handleMouseUp);
     return () => {
@@ -398,11 +399,27 @@ export default function AgendaPage() {
                           return (
                             <div 
                               key={slotId}
-                              onMouseDown={(e) => { e.preventDefault(); handleMouseDown(slotId); }}
-                              onMouseEnter={(e) => handleMouseEnter(e, slotId)}
+                              data-slot={slotId}
+                              style={{ touchAction: 'manipulation' }}
+                              onMouseDown={(e) => { if (touchActiveRef.current) return; e.preventDefault(); handleMouseDown(slotId); }}
+                              onMouseEnter={(e) => { if (touchActiveRef.current) return; handleMouseEnter(e, slotId); }}
                               onMouseMove={handleMouseMove}
                               onMouseLeave={() => setHoverSlot(null)}
-                              onTouchStart={(e) => { e.preventDefault(); applyToggle(slotId, isMine ? 'remove' : 'add'); }}
+                              onTouchStart={() => {
+                                touchActiveRef.current = true;
+                                if (!guardName()) return;
+                                const mine = mySlots.has(slotId);
+                                setIsDragging(true);
+                                setDragMode(mine ? 'remove' : 'add');
+                                applyToggle(slotId, mine ? 'remove' : 'add');
+                              }}
+                              onTouchMove={(e) => {
+                                const t = e.touches[0];
+                                if (!t || !dragMode) return;
+                                const el = document.elementFromPoint(t.clientX, t.clientY) as HTMLElement | null;
+                                const sid = el?.dataset?.slot;
+                                if (sid) applyToggle(sid, dragMode);
+                              }}
                               className={`h-10 md:h-12 rounded-md border transition-all duration-200 cursor-pointer flex items-center justify-center relative select-none ${bgClass}`}
                             >
                                {total > 0 && (
