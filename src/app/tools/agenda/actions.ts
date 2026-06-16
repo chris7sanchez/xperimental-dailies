@@ -48,12 +48,17 @@ export async function saveAvailability(name: string, pin: string, slots: string[
     return { error: "PIN incorrecto para ese nombre" };
   }
 
-  data.participants[key] = {
-    name: name.trim(),
-    slots,
-    pinHash: existing?.pinHash || hashPin(pin),
-    updatedAt: new Date().toISOString(),
-  };
+  // Si se queda sin horas, eliminamos el participante (no dejamos nombres con 0h).
+  if (!slots || slots.length === 0) {
+    delete data.participants[key];
+  } else {
+    data.participants[key] = {
+      name: name.trim(),
+      slots,
+      pinHash: existing?.pinHash || hashPin(pin),
+      updatedAt: new Date().toISOString(),
+    };
+  }
 
   try {
     await setDoc(doc(db, "agenda", "main"), data);
@@ -86,4 +91,13 @@ export async function deleteAvailability(name: string, pin: string) {
     console.error("Error deleting agenda:", err);
     return { error: "Error al borrar en la base de datos" };
   }
+}
+
+export async function verifyPin(name: string, pin: string) {
+  if (!name?.trim() || !/^\d{4}$/.test(pin || "")) return { ok: false };
+  const data = await readRaw();
+  const existing = data.participants?.[keyFor(name)];
+  if (!existing) return { ok: false, notFound: true };
+  if (!existing.pinHash) return { ok: true };
+  return { ok: existing.pinHash === hashPin(pin) };
 }
