@@ -1,13 +1,80 @@
 [
-  { "id": 1, "name": "Alfonso Ferrer", "category": "Interpretación", "image": "/images/actors/alfonso.jpg" },
-  { "id": 2, "name": "Alba Keita", "category": "Teatro Musical", "image": "/images/actors/alba.jpg" },
-  { "id": 3, "name": "Cinzia Newoman", "category": "Cine y TV", "image": "/images/actors/cinzia.jpg" },
-  { "id": 4, "name": "Angel Lara", "category": "Voz", "image": "/images/actors/angel.jpg" },
-  { "id": 5, "name": "Patricia Lopez", "category": "Interpretación", "image": "/images/actors/patricia.jpg" },
-  { "id": 6, "name": "Mel Alvarez", "category": "Cine y TV", "image": "/images/actors/mel.jpg" },
-  { "id": 7, "name": "Silvia Mielgo", "category": "Teatro", "image": "/images/actors/silvia.jpg" },
-  { "id": 8, "name": "Valentin Rus", "category": "Voz", "image": "/images/actors/valentin.jpg" },
-  { "id": 9, "name": "Gema Alvaro", "category": "Teatro Musical", "image": "/images/actors/gema.jpg" },
-  { "id": 10, "name": "Jesus Flores", "category": "Interpretación", "image": "/images/actors/jesus.jpg" },
-  { "id": 11, "name": "Blanca Arnal", "category": "Cine y TV", "image": "/images/actors/blanca.jpg" }
+  {
+    "id": 1,
+    "name": "Alfonso Ferrer",
+    "category": "Interpretación",
+    "image": "/images/actors/alfonso.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Alba Keita",
+    "category": "Teatro Musical",
+    "image": "/images/actors/alba.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Cinzia Newoman",
+    "category": "Cine y TV",
+    "image": "/images/actors/cinzia.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Angel Lara",
+    "category": "Voz",
+    "image": "/images/actors/angel.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Patricia Lopez",
+    "category": "Interpretación",
+    "image": "/images/actors/patricia.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Mel Alvarez",
+    "category": "Cine y TV",
+    "image": "/images/actors/mel.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Silvia Mielgo",
+    "category": "Teatro",
+    "image": "/images/actors/silvia.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Valentin Rus",
+    "category": "Voz",
+    "image": "/images/actors/valentin.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Gema Alvaro",
+    "category": "Teatro Musical",
+    "image": "/images/actors/gema.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Jesus Flores",
+    "category": "Interpretación",
+    "image": "/images/actors/jesus.jpg"
+  },
+  {
+    "id": 11,
+    "name": "Blanca Arnal",
+    "category": "Cine y TV",
+    "image": "/images/actors/blanca.jpg"
+  },
+  {
+    "id": 12,
+    "name": "Coco",
+    "category": "Interpretación",
+    "image": "/images/actors/coco.jpg"
+  },
+  {
+    "id": 13,
+    "name": "Fanny Corral",
+    "category": "Interpretación",
+    "image": "/images/actors/fanny.jpg"
+  }
 ]

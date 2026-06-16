@@ -221,6 +221,9 @@ export default function AgendaPage() {
     <div className="min-h-screen bg-[#0a0a0b] text-zinc-100 font-sans p-6 md:p-12 selection:bg-zinc-600">
       {/* Header Estilo Xperimental */}
       <header className="max-w-7xl mx-auto mb-16 space-y-4">
+        <a href="/hub" className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.25em] text-zinc-500 hover:text-orange-400 transition-colors mb-2">
+          <span aria-hidden="true">←</span> Volver al Hub
+        </a>
         <div className="flex items-center gap-3 text-zinc-500 uppercase tracking-[0.3em] text-[10px] font-black">
           <CalendarDays className="w-4 h-4" />
           <span>Agenda & Matchmaking // Xperimental</span>
