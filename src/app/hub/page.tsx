@@ -54,7 +54,7 @@ export default function XperimentalHubPage() {
                 className="absolute top-[37%] left-[8%] w-[26%] h-[15%] group/btn cursor-pointer z-20 flex items-center justify-center"
                 title="Ir a Escenas"
             >
-                <div className="absolute inset-0 bg-white/0 group-hover/btn:bg-white/5 backdrop-blur-[2px] rounded-sm transition-all duration-300 border border-transparent group-hover/btn:border-white/10" />
+                <div className="absolute inset-0 bg-white/0 group-hover/btn:bg-white/5 rounded-sm transition-all duration-300 border border-transparent group-hover/btn:border-white/10" />
                 <div className="opacity-0 group-hover/btn:opacity-100 translate-y-2 group-hover/btn:translate-y-0 transition-all duration-300">
                     <MoveRight className="text-orange-600 w-5 h-5 shadow-[0_0_20px_rgba(234,88,12,0.5)]" />
                 </div>
@@ -66,7 +66,7 @@ export default function XperimentalHubPage() {
                 className="absolute top-[37%] left-[34%] w-[26%] h-[15%] group/btn cursor-pointer z-20 flex items-center justify-center"
                 title="Ver Catálogo de Actores"
             >
-                <div className="absolute inset-0 bg-white/0 group-hover/btn:bg-white/5 backdrop-blur-[2px] rounded-sm transition-all duration-300 border border-transparent group-hover/btn:border-white/10" />
+                <div className="absolute inset-0 bg-white/0 group-hover/btn:bg-white/5 rounded-sm transition-all duration-300 border border-transparent group-hover/btn:border-white/10" />
                 <div className="opacity-0 group-hover/btn:opacity-100 translate-y-2 group-hover/btn:translate-y-0 transition-all duration-300">
                     <MoveRight className="text-orange-600 w-5 h-5 shadow-[0_0_20px_rgba(234,88,12,0.5)]" />
                 </div>
@@ -78,7 +78,7 @@ export default function XperimentalHubPage() {
                 className="absolute top-[37%] left-[60%] w-[26%] h-[15%] group/btn cursor-pointer z-20 flex items-center justify-center"
                 title="Registro de Tomas & Feedback"
             >
-                <div className="absolute inset-0 bg-white/0 group-hover/btn:bg-white/5 backdrop-blur-[2px] rounded-sm transition-all duration-300 border border-transparent group-hover/btn:border-white/10" />
+                <div className="absolute inset-0 bg-white/0 group-hover/btn:bg-white/5 rounded-sm transition-all duration-300 border border-transparent group-hover/btn:border-white/10" />
                 <div className="opacity-0 group-hover/btn:opacity-100 translate-y-2 group-hover/btn:translate-y-0 transition-all duration-300">
                     <MoveRight className="text-orange-600 w-5 h-5 shadow-[0_0_20px_rgba(234,88,12,0.5)]" />
                 </div>
