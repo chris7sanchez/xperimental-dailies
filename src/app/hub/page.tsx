@@ -56,7 +56,7 @@ export default function XperimentalHubPage() {
             >
                 <div className="absolute inset-0 bg-white/0 group-hover/btn:bg-white/5 rounded-sm transition-all duration-300 border border-transparent group-hover/btn:border-white/10" />
                 <div className="opacity-0 group-hover/btn:opacity-100 translate-y-2 group-hover/btn:translate-y-0 transition-all duration-300">
-                    <span className="text-red-600 text-7xl leading-none select-none" style={{ fontFamily: "'Caveat', cursive", fontWeight: 700, transform: "rotate(-10deg)", textShadow: "0 2px 10px rgba(220,38,38,0.45)" }}>X</span>
+                    <img src="/img/x-marca.png" alt="Entrar" className="w-20 h-20 md:w-24 md:h-24 object-contain drop-shadow-[0_6px_16px_rgba(0,0,0,0.55)] group-hover/btn:scale-110 transition-transform duration-300" style={{ transform: "rotate(-8deg)" }} />
                 </div>
             </button>
 
@@ -68,7 +68,7 @@ export default function XperimentalHubPage() {
             >
                 <div className="absolute inset-0 bg-white/0 group-hover/btn:bg-white/5 rounded-sm transition-all duration-300 border border-transparent group-hover/btn:border-white/10" />
                 <div className="opacity-0 group-hover/btn:opacity-100 translate-y-2 group-hover/btn:translate-y-0 transition-all duration-300">
-                    <span className="text-red-600 text-7xl leading-none select-none" style={{ fontFamily: "'Caveat', cursive", fontWeight: 700, transform: "rotate(-10deg)", textShadow: "0 2px 10px rgba(220,38,38,0.45)" }}>X</span>
+                    <img src="/img/x-marca.png" alt="Entrar" className="w-20 h-20 md:w-24 md:h-24 object-contain drop-shadow-[0_6px_16px_rgba(0,0,0,0.55)] group-hover/btn:scale-110 transition-transform duration-300" style={{ transform: "rotate(-8deg)" }} />
                 </div>
             </button>
 
@@ -80,7 +80,7 @@ export default function XperimentalHubPage() {
             >
                 <div className="absolute inset-0 bg-white/0 group-hover/btn:bg-white/5 rounded-sm transition-all duration-300 border border-transparent group-hover/btn:border-white/10" />
                 <div className="opacity-0 group-hover/btn:opacity-100 translate-y-2 group-hover/btn:translate-y-0 transition-all duration-300">
-                    <span className="text-red-600 text-7xl leading-none select-none" style={{ fontFamily: "'Caveat', cursive", fontWeight: 700, transform: "rotate(-10deg)", textShadow: "0 2px 10px rgba(220,38,38,0.45)" }}>X</span>
+                    <img src="/img/x-marca.png" alt="Entrar" className="w-20 h-20 md:w-24 md:h-24 object-contain drop-shadow-[0_6px_16px_rgba(0,0,0,0.55)] group-hover/btn:scale-110 transition-transform duration-300" style={{ transform: "rotate(-8deg)" }} />
                 </div>
             </button>
           </div>
