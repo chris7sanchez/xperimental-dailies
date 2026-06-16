@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { MoveRight, CalendarDays } from "lucide-react";
+import { CalendarDays } from "lucide-react";
 
 export default function XperimentalHubPage() {
   const router = useRouter();
@@ -56,7 +56,7 @@ export default function XperimentalHubPage() {
             >
                 <div className="absolute inset-0 bg-white/0 group-hover/btn:bg-white/5 rounded-sm transition-all duration-300 border border-transparent group-hover/btn:border-white/10" />
                 <div className="opacity-0 group-hover/btn:opacity-100 translate-y-2 group-hover/btn:translate-y-0 transition-all duration-300">
-                    <MoveRight className="text-orange-600 w-5 h-5 shadow-[0_0_20px_rgba(234,88,12,0.5)]" />
+                    <span className="text-red-600 text-7xl leading-none select-none" style={{ fontFamily: "'Caveat', cursive", fontWeight: 700, transform: "rotate(-10deg)", textShadow: "0 2px 10px rgba(220,38,38,0.45)" }}>X</span>
                 </div>
             </button>
 
@@ -68,7 +68,7 @@ export default function XperimentalHubPage() {
             >
                 <div className="absolute inset-0 bg-white/0 group-hover/btn:bg-white/5 rounded-sm transition-all duration-300 border border-transparent group-hover/btn:border-white/10" />
                 <div className="opacity-0 group-hover/btn:opacity-100 translate-y-2 group-hover/btn:translate-y-0 transition-all duration-300">
-                    <MoveRight className="text-orange-600 w-5 h-5 shadow-[0_0_20px_rgba(234,88,12,0.5)]" />
+                    <span className="text-red-600 text-7xl leading-none select-none" style={{ fontFamily: "'Caveat', cursive", fontWeight: 700, transform: "rotate(-10deg)", textShadow: "0 2px 10px rgba(220,38,38,0.45)" }}>X</span>
                 </div>
             </button>
 
@@ -80,7 +80,7 @@ export default function XperimentalHubPage() {
             >
                 <div className="absolute inset-0 bg-white/0 group-hover/btn:bg-white/5 rounded-sm transition-all duration-300 border border-transparent group-hover/btn:border-white/10" />
                 <div className="opacity-0 group-hover/btn:opacity-100 translate-y-2 group-hover/btn:translate-y-0 transition-all duration-300">
-                    <MoveRight className="text-orange-600 w-5 h-5 shadow-[0_0_20px_rgba(234,88,12,0.5)]" />
+                    <span className="text-red-600 text-7xl leading-none select-none" style={{ fontFamily: "'Caveat', cursive", fontWeight: 700, transform: "rotate(-10deg)", textShadow: "0 2px 10px rgba(220,38,38,0.45)" }}>X</span>
                 </div>
             </button>
           </div>
