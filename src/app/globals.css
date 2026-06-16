@@ -1,0 +1,265 @@
+@import "../theme/tokens.css";
+@import "../styles/premium-effects.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 95%;
+    --foreground: 0 0% 0%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 45 93% 47%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 90%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 90%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 45 93% 47%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 85%;
+    --input: 0 0% 85%;
+    --ring: 45 93% 47%;
+    --radius: 0.1rem;
+    --chart-1: 45 93% 47%;
+    --chart-2: 0 0% 20%;
+    --chart-3: 0 0% 40%;
+    --chart-4: 0 0% 60%;
+    --chart-5: 0 0% 80%;
+  }
+
+  .dark {
+    /* Deep cinematic blue — NO negro puro */
+    --background: 222 36% 7%;
+    --foreground: 45 20% 93%;
+    --card: 220 30% 10%;
+    --card-foreground: 45 20% 93%;
+    --popover: 220 30% 10%;
+    --popover-foreground: 45 20% 93%;
+    --primary: 42 90% 58%;
+    --primary-foreground: 222 36% 7%;
+    --secondary: 220 20% 16%;
+    --secondary-foreground: 45 15% 92%;
+    --muted: 220 20% 16%;
+    --muted-foreground: 220 12% 68%;
+    --accent: 42 90% 55%;
+    --accent-foreground: 222 36% 7%;
+    --destructive: 0 62.8% 40%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 18% 22%;
+    --input: 220 18% 20%;
+    --ring: 42 90% 55%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-headline font-black uppercase tracking-tight;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .gold-text-vibrant {
+    background: linear-gradient(to bottom,
+        #fcd34d 0%,
+        #fbbf24 40%,
+        #d97706 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  }
+
+  .text-mustard-gold {
+    color: #eab308;
+    /* Tailwind yellow-500 equivalent but more specific */
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+  .handwriting, .christiangraphy {
+    @apply font-headline font-black;
+  }
+
+  @keyframes rotate-pause {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    15% {
+      transform: rotate(360deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-rotate-pause {
+    animation: rotate-pause 4s ease-in-out infinite;
+  }
+
+  @keyframes shine-pause {
+    0% {
+      background-position: -100%;
+    }
+
+    20% {
+      background-position: 200%;
+    }
+
+    100% {
+      background-position: 200%;
+    }
+  }
+
+  .animate-shine-pause {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    background-size: 200% 100%;
+    animation: shine-pause 3s infinite;
+  }
+
+  @keyframes shine-text {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    100% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .animate-shine-text {
+    background: linear-gradient(to right, #2563eb, #60a5fa, #2563eb);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-size: 200% auto;
+    animation: shine-text 3s linear infinite;
+  }
+
+  @keyframes clapper {
+
+    0%,
+    100% {
+      transform: rotate(0deg);
+    }
+
+    10% {
+      transform: rotate(-15deg);
+    }
+
+    20% {
+      transform: rotate(0deg);
+    }
+  }
+
+  .animate-clapper {
+    animation: clapper 2s ease-in-out infinite;
+    transform-origin: bottom left;
+  }
+
+  .pwa-splash {
+    display: none;
+  }
+
+  @media all and (display-mode: standalone) {
+    .pwa-splash {
+      display: flex;
+    }
+  }
+
+  .handwriting {
+    font-family: 'Caveat', cursive;
+  }
+
+  /* Cinematic & Photography Studio Utilities */
+  .bg-studio-matte {
+    background: radial-gradient(circle at 50% -20%, hsl(220, 30%, 12%) 0%, hsl(222, 36%, 7%) 100%);
+  }
+
+  .studio-rim-light {
+    box-shadow: inset 0 1px 1px hsla(220, 30%, 50%, 0.08), 0 20px 50px hsla(222, 36%, 3%, 0.5);
+  }
+
+  .glass-studio {
+    background: hsla(220, 30%, 10%, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid hsla(220, 20%, 30%, 0.15);
+  }
+
+  .text-phosphor {
+    color: #fafafa;
+    text-shadow: 0 0 12px rgba(250, 250, 250, 0.3);
+  }
+
+  .border-technical {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  @keyframes light-leak {
+    0%, 100% { opacity: 0.02; transform: translateX(-10%); }
+    50% { opacity: 0.05; transform: translateX(10%); }
+  }
+
+  .animate-light-leak {
+    animation: light-leak 10s ease-in-out infinite;
+  }
+
+  /* iOS safe area for bottom tab bar */
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  /* Contraste garantizado WCAG AA - usar en lugar de text-white/40 etc */
+  .text-on-dark {
+    color: rgba(255, 255, 255, 0.90); /* ratio >7:1 sobre negro */
+  }
+  .text-on-dark-secondary {
+    color: rgba(255, 255, 255, 0.72); /* ratio ~4.6:1 sobre negro - mínimo AA */
+  }
+  .text-on-dark-muted {
+    color: rgba(255, 255, 255, 0.60); /* ratio ~3.8:1 - solo para texto decorativo grande */
+  }
+  .text-primary-contrast {
+    /* Usar en lugar de text-primary sobre negro - versión más brillante */
+    color: hsl(45, 93%, 62%);
+  }
+}

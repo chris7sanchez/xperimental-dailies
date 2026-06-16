@@ -1,0 +1,94 @@
+/* ──────────────────────────────────────────────
+   SceneMe — Midnight Cinema Design Tokens
+   Versión CSS Puro (sin @layer para evitar errores de compilación)
+   ────────────────────────────────────────────── */
+
+/* ── Dark (default) ─────────────────────── */
+:root,
+[data-theme="dark"] {
+  --sm-bg-base:       hsl(222, 36%, 7%);
+  --sm-bg-surface:    hsl(220, 30%, 10%);
+  --sm-bg-elevated:   hsl(220, 28%, 13%);
+  --sm-bg-overlay:    hsla(222, 36%, 4%, 0.75);
+
+  --sm-text-primary:  hsl(45, 20%, 92%);
+  --sm-text-secondary: hsl(220, 12%, 68%);
+  --sm-text-muted:    hsl(220, 10%, 50%);
+
+  --sm-accent:        hsl(42, 90%, 55%);
+  --sm-accent-soft:   hsla(42, 90%, 55%, 0.14);
+  --sm-accent-hover:  hsl(42, 95%, 62%);
+  --sm-accent-glow:   hsla(42, 90%, 55%, 0.25);
+
+  --sm-border-subtle: hsla(220, 18%, 30%, 0.4);
+  --sm-border-active: hsla(42, 60%, 50%, 0.35);
+
+  --sm-shadow-sm:  0 2px  8px  hsla(222, 40%, 4%, 0.4);
+  --sm-shadow-md:  0 8px  24px hsla(222, 40%, 4%, 0.5);
+  --sm-shadow-lg:  0 16px 48px hsla(222, 40%, 4%, 0.6);
+  --sm-shadow-glow: 0 4px 20px hsla(42, 90%, 55%, 0.15);
+
+  --sm-success: hsl(150, 60%, 48%);
+  --sm-warning: hsl(38, 95%, 55%);
+  --sm-error:   hsl(0, 65%, 55%);
+  --sm-info:    hsl(210, 70%, 58%);
+
+  --sm-astro-gold:      hsl(42, 75%, 55%);
+  --sm-astro-gold-soft:  hsla(42, 75%, 55%, 0.14);
+  --sm-astro-purple:    hsl(270, 50%, 58%);
+  --sm-astro-blue:      hsl(210, 65%, 55%);
+}
+
+/* ── Light ──────────────────────────────── */
+[data-theme="light"] {
+  --sm-bg-base:       hsl(40, 20%, 96%);
+  --sm-bg-surface:    hsl(40, 15%, 100%);
+  --sm-bg-elevated:   hsl(40, 10%, 100%);
+  --sm-bg-overlay:    hsla(40, 10%, 98%, 0.85);
+
+  --sm-text-primary:  hsl(222, 36%, 12%);
+  --sm-text-secondary: hsl(220, 15%, 40%);
+  --sm-text-muted:    hsl(220, 10%, 58%);
+
+  --sm-accent:        hsl(42, 85%, 45%);
+  --sm-accent-soft:   hsla(42, 85%, 45%, 0.1);
+  --sm-accent-hover:  hsl(42, 90%, 40%);
+  --sm-accent-glow:   hsla(42, 85%, 45%, 0.15);
+
+  --sm-border-subtle: hsla(220, 15%, 80%, 0.6);
+  --sm-border-active: hsla(42, 70%, 45%, 0.4);
+
+  --sm-shadow-sm:  0 2px  6px  hsla(220, 20%, 50%, 0.08);
+  --sm-shadow-md:  0 6px  16px hsla(220, 20%, 50%, 0.1);
+  --sm-shadow-lg:  0 12px 32px hsla(220, 20%, 50%, 0.12);
+  --sm-shadow-glow: 0 4px 16px hsla(42, 85%, 45%, 0.1);
+}
+
+/* ── Tipografía ────────────────────────────── */
+.sm-display { font-family: 'Limelight', cursive; }
+.sm-body    { font-family: 'Roboto Condensed', sans-serif; }
+.sm-mono    { font-family: 'Courier Prime', 'Courier New', monospace; }
+
+/* ── Micro-interacciones ──────────────────── */
+.sm-hover-lift {
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+.sm-hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sm-shadow-md);
+}
+
+.sm-press {
+  transition: transform 0.1s ease;
+}
+.sm-press:active {
+  transform: scale(0.97);
+}
+
+.sm-fade-in {
+  animation: smFadeIn 0.4s ease-out both;
+}
+@keyframes smFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
