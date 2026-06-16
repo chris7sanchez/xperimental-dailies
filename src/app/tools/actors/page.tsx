@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Search, Instagram, Twitter, Linkedin } from "lucide-react";
+import Image from "next/image";
 import ACTORS from "@/data/actors.json";
 
 const CATEGORIES = ["Todos", "Interpretación", "Teatro Musical", "Cine y TV", "Voz", "Teatro"];
@@ -89,10 +90,12 @@ export default function ActorsDirectoryPage() {
                 <div className="aspect-[4/5] bg-[#1a1a1c] relative overflow-hidden flex items-center justify-center">
                     {actor.image ? (
                         <div className="w-full h-full relative group">
-                            <img 
+                            <Image 
                               src={actor.image} 
                               alt={actor.name} 
-                              className="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000 ease-in-out scale-[1.01]" 
+                              fill
+                              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                              className="object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000 ease-in-out" 
                             />
                         </div>
                     ) : (
@@ -116,11 +119,13 @@ export default function ActorsDirectoryPage() {
       <section className="bg-zinc-900/30 border-t border-b border-white/5 py-32 px-6">
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-16">
             <div className="relative group flex-shrink-0">
-                <div className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-orange-600/20 group-hover:border-orange-600 transition-all duration-700 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
-                    <img 
+                <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-orange-600/20 group-hover:border-orange-600 transition-all duration-700 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+                    <Image 
                       src="/images/actors/christian.jpg" 
                       alt="Christian Sánchez" 
-                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
+                      fill
+                      sizes="256px"
+                      className="object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
                     />
                 </div>
                 <div className="absolute -bottom-4 -right-4 w-12 h-12 bg-orange-600 flex items-center justify-center rounded-full text-black font-black text-xs">

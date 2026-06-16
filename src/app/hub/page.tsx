@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { CalendarDays } from "lucide-react";
+import Image from "next/image";
 
 export default function XperimentalHubPage() {
   const router = useRouter();
@@ -41,9 +42,12 @@ export default function XperimentalHubPage() {
         {/* The Interactive Clapperboard Hero */}
         <div className="relative group animate-in fade-in zoom-in-95 duration-1000 delay-300">
           <div className="relative w-full max-w-[600px] drop-shadow-[0_45px_100px_rgba(0,0,0,0.8)]">
-            <img 
+            <Image 
                 src="/img/clapperboard_hub.png" 
                 alt="Xperimental Clapperboard" 
+                width={640}
+                height={640}
+                priority
                 className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
             />
 
