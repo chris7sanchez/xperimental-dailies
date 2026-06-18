@@ -200,6 +200,30 @@ export default function AgendaPage() {
   }
   const participantEntries = Object.entries(mergedParticipants || {});
 
+  // Quién está disponible en cada hora (todos los participantes, incluido yo)
+  const slotNames = {};
+  participantEntries.forEach(([key, p]) => {
+    (p.slots || []).forEach((sid) => {
+      if (!slotNames[sid]) slotNames[sid] = [];
+      slotNames[sid].push(key === myKey ? `${p.name} (tú)` : p.name);
+    });
+  });
+
+  // Coincidencias: horas con 2+ personas, agrupando horas seguidas del mismo grupo en rangos
+  const rangeLabel = (s, e) => `${String(s).padStart(2, '0')}:00–${String(e + 1).padStart(2, '0')}:00`;
+  const coincidences = DAYS.map((day) => {
+    const groups = [];
+    HOURS.forEach((h) => {
+      const names = slotNames[`${day.key}-${h}`] || [];
+      if (names.length < 2) return;
+      const sig = [...names].sort().join('|');
+      const last = groups[groups.length - 1];
+      if (last && last.sig === sig && last.end === h - 1) last.end = h;
+      else groups.push({ start: h, end: h, sig, names });
+    });
+    return { day, groups };
+  }).filter((d) => d.groups.length > 0);
+
   const getTooltipContent = () => {
     if (!hoverSlot) return null;
     const [dayKey, hourStr] = hoverSlot.split('-');
@@ -419,6 +443,43 @@ export default function AgendaPage() {
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="lg:col-span-12">
+          <Card className="bg-zinc-900/10 border-zinc-800/40 backdrop-blur-sm shadow-2xl rounded-2xl overflow-hidden">
+            <CardHeader className="border-b border-zinc-800/40 bg-zinc-900/40 p-4">
+              <CardTitle className="text-xs font-black uppercase tracking-widest text-zinc-400 flex items-center gap-2">
+                <Users className="w-4 h-4 text-[#48d182]" /> Coincidencias — quién puede ensayar junto
+              </CardTitle>
+              <CardDescription className="text-[9px] text-zinc-600 uppercase tracking-widest mt-1">Horas donde coinciden 2 o más personas</CardDescription>
+            </CardHeader>
+            <CardContent className="p-4">
+              {coincidences.length === 0 ? (
+                <div className="text-center py-8 text-[10px] text-zinc-600 font-black uppercase tracking-widest">Aún no hay horas en común. Marca tu disponibilidad para encontrar coincidencias.</div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                  {coincidences.map(({ day, groups }) => (
+                    <div key={day.key} className="bg-zinc-900/30 border border-zinc-800/30 rounded-xl p-4 space-y-3">
+                      <div className="text-xs font-black uppercase tracking-widest text-zinc-300 border-b border-zinc-800/40 pb-2">{day.full}</div>
+                      {groups.map((g, i) => (
+                        <div key={i} className="space-y-1.5">
+                          <div className="text-sm font-serif italic text-[#48d182]">
+                            {rangeLabel(g.start, g.end)}
+                            <span className="ml-2 text-[10px] not-italic font-black text-zinc-600">{g.names.length} pers.</span>
+                          </div>
+                          <div className="flex flex-wrap gap-1.5">
+                            {g.names.map((n, j) => (
+                              <span key={j} className="text-[11px] px-2 py-0.5 rounded-full bg-zinc-800/60 text-zinc-300 border border-zinc-700/40">{n}</span>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </CardContent>
+          </Card>
         </div>
       </div>
       {getTooltipContent()}
